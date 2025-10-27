@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <title>2048 游戏</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1 class="title">2048</h1>
+            <div class="scores-container">
+                <div class="score-container">
+                    <div class="score-label">分数</div>
+                    <div class="score" id="score">0</div>
+                </div>
+                <div class="score-container best">
+                    <div class="score-label">最高分</div>
+                    <div class="score" id="best-score">0</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="above-game">
+            <p class="game-intro">合并数字，挑战 <strong>2048!</strong></p>
+            <button class="restart-button" id="restart-btn">重新开始</button>
+        </div>
+
+        <div class="game-container" id="game-container">
+            <div class="grid-container" id="grid-container"></div>
+            <div class="tile-container" id="tile-container"></div>
+            <div class="game-message" id="game-message">
+                <p></p>
+                <div class="lower">
+                    <button class="retry-button" id="retry-btn">再试一次</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="game-explanation">
+            <p class="game-instructions">
+                <strong>玩法说明：</strong> 使用<strong>方向键</strong>移动方块。相同数字的方块碰撞后会<strong>合并成一个！</strong>
+            </p>
+            <p class="game-mobile-hint">
+                <strong>移动端：</strong> 在游戏区域滑动进行操作
+            </p>
+        </div>
+    </div>
+
+    <script src="game.js"></script>
+</body>
+</html>
