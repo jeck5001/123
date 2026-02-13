@@ -1,0 +1,25 @@
+name: Keep Codespace Alive
+
+on:
+  schedule:
+    - cron: '0 */3 * * *'
+  workflow_dispatch:
+
+jobs:
+  keep-alive:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Wake and Start OpenClaw
+        env:
+          GH_TOKEN: ${{ secrets.GH_PAT }}
+        run: |
+          CODESPACE="bug-free-train-9gvv7gggjj3x9j"
+          STATUS=$(gh codespace list --json name,state -q ".[] | select(.name==\"$CODESPACE\") | .state")
+          echo "状态: $STATUS"
+          if [ "$STATUS" != "Available" ]; then
+            echo "唤醒中..."
+            gh codespace ssh -c $CODESPACE --command "nohup openclaw gateway --port 18789 --verbose > /tmp/openclaw.log 2>&1 &"
+            echo "已唤醒并启动 OpenClaw"
+          else
+            echo "Codespace 正在运行"
+          fi
